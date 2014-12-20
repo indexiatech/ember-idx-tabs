@@ -1,0 +1,63 @@
+<h1>Tabs with Query Params</h1>
+
+It is possible to bound the current selected tab to a controller parameter (usually a query param)
+by bindingthe <i>selected-idx</i> property on the <i>\{{em-tabs}}</i> tag.
+
+<p>
+    Try to select another tab and refresh the page, see how the tab selected is persisted accross refreshes.
+</p>
+
+<h2>Demo</h2>
+<div class="line-example">
+    {{#em-tabs selected-idx=tab_idx}}
+        {{#em-tab-list}}
+            {{#em-tab}}Foo{{/em-tab}}
+            {{#em-tab}}Bar{{/em-tab}}
+            {{#em-tab}}Baz{{/em-tab}}
+        {{/em-tab-list}}
+        {{#em-tab-panel}}
+            <p>Foo Content</p>
+        {{/em-tab-panel}}
+        {{#em-tab-panel}}
+            <p>Bar Content</p>
+        {{/em-tab-panel}}
+        {{#em-tab-panel}}
+            <p>Baz Content</p>
+        {{/em-tab-panel}}
+    {{/em-tabs}}
+</div>
+
+<hr/>
+<h2>Template</h2>
+<div class="well line-example">
+    <pre><code class="handlebars">
+                \{{#em-tabs selected-idx=tab_idx}}
+                    \{{#em-tab-list}}
+                        \{{#em-tab}}Foo\{{/em-tab}}
+                        \{{#em-tab}}Bar\{{/em-tab}}
+                        \{{#em-tab}}Baz\{{/em-tab}}
+                    \{{/em-tab-list}}
+                    \{{#em-tab-panel}}
+                        &lt;p>Foo Content&lt;/p>
+                    \{{/em-tab-panel}}
+                    \{{#em-tab-panel}}
+                    &lt;p>Bar Content&lt;/p>
+                        \{{/em-tab-panel}}
+                    \{{#em-tab-panel}}
+                    &lt;p>Baz Content&lt;/p>
+                    \{{/em-tab-panel}}
+                \{{/em-tabs}}
+    </code></pre>
+</div>
+
+<h2>Controller</h2>
+<div class="well line-example">
+    <pre><code class="javascript">
+        export default Em.ObjectController.extend({
+            queryParams: ['tab_idx'],
+            tab_idx: 0
+        });
+    </code></pre>
+</div>
+
+

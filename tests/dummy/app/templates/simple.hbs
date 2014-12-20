@@ -1,0 +1,38 @@
+<h1>Simple Tabs</h1>
+
+The simplest form of the tabs component is simply laying down tabs and their panes on the same template.
+
+
+<h2>Demo</h2>
+{{#em-tabs}}
+    {{#em-tab-list}}
+        {{#em-tab}}Foo{{/em-tab}}
+        {{#em-tab}}Bar{{/em-tab}}
+    {{/em-tab-list}}
+    {{#em-tab-panel}}
+        Foo Content...
+    {{/em-tab-panel}}
+    {{#em-tab-panel}}
+        Bar Content...
+    {{/em-tab-panel}}
+{{/em-tabs}}
+
+
+<h2>Markup</h2>
+
+<div class="well line-example">
+<pre><code class="handlebars">
+\{{#em-tabs}}
+    \{{#em-tab-list}}
+        \{{#em-tab}}One\{{/em-tab}}
+        \{{#em-tab}}Two\{{/em-tab}}
+    \{{/em-tab-list}}
+    \{{#em-tab-panel}}
+        One Content...
+    \{{/em-tab-panel}}
+    \{{#em-tab-panel}}
+        Two Content...
+    \{{/em-tab-panel}}
+\{{/em-tabs}}
+</code></pre>
+</div>

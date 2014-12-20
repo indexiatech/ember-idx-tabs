@@ -1,0 +1,50 @@
+<h1>Styling Tabs</h1>
+
+Tab scan be styled by configuration, please look at the <i>idx-tabs.js</i> in the addon's initializer folder
+for more information about how to create new configs,
+
+Here is an example of the <i>bs</i> config that ships out of the box with the component,
+
+If no <i>configName</i> specified the <i>default</i> config is used.
+
+<h2>Demo</h2>
+
+{{#em-tabs configName="bs"}}
+    {{#em-tab-list}}
+        {{#em-tab}}<a href="javascript:void(0)">Foo</a>{{/em-tab}}
+        {{#em-tab}}<a href="javascript:void(0)">Bar</a>{{/em-tab}}
+        {{#em-tab}}<a href="javascript:void(0)">Baz</a>{{/em-tab}}
+    {{/em-tab-list}}
+    {{#em-tab-panel}}
+        Foo Content...
+    {{/em-tab-panel}}
+    {{#em-tab-panel}}
+        Bar Content...
+    {{/em-tab-panel}}
+    {{#em-tab-panel}}
+        Baz Content...
+    {{/em-tab-panel}}
+{{/em-tabs}}
+
+<h2>Markup</h2>
+
+<div class="well line-example">
+<pre><code class="handlebars">
+\{{#em-tabs configName="bs"}}
+    \{{#em-tab-list}}
+        \{{#em-tab}}<a href="javascript:void(0)">Foo</a>\{{/em-tab}}
+        \{{#em-tab}}<a href="javascript:void(0)">Bar</a>\{{/em-tab}}
+        \{{#em-tab}}<a href="javascript:void(0)">Baz</a>\{{/em-tab}}
+    \{{/em-tab-list}}
+    \{{#em-tab-panel}}
+        Foo Content...
+    \{{/em-tab-panel}}
+    \{{#em-tab-panel}}
+        Bar Content...
+    \{{/em-tab-panel}}
+    \{{#em-tab-panel}}
+        Baz Content...
+    \{{/em-tab-panel}}
+\{{/em-tabs}}
+</code></pre>
+</div>

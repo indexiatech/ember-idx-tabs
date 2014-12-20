@@ -1,0 +1,58 @@
+<h1>Controller per Tab</h1>
+
+If your tabs are more advanced and contains large template & logic you can have a separated
+template / controller pair per tab by using the <i>\{{render}}</i> handlebars helper.
+<br/><br/>
+<p><i><a href="http://emberjs.com/guides/templates/rendering-with-helpers">Please check Ember's \{{render}}
+doc for more info.</a></i></p>
+
+<h2>Demo</h2>
+<div class="line-example">
+    {{#em-tabs}}
+        {{#em-tab-list}}
+            {{#em-tab}}Foo{{/em-tab}}
+            {{#em-tab}}Bar{{/em-tab}}
+        {{/em-tab-list}}
+        {{#em-tab-panel}}
+            {{render 'c1'}}
+        {{/em-tab-panel}}
+        {{#em-tab-panel}}
+            {{render 'c2'}}
+        {{/em-tab-panel}}
+    {{/em-tabs}}
+</div>
+
+<hr/>
+<h2>Template</h2>
+<div class="well line-example">
+    <pre><code class="handlebars">
+                \{{#em-tabs}}
+                    \{{#em-tab-list}}
+                        \{{#em-tab}}Foo\{{/em-tab}}
+                        \{{#em-tab}}Bar\{{/em-tab}}
+                    \{{/em-tab-list}}
+                    \{{#em-tab-panel}}
+                        \{{render 'c1'}}
+                    \{{/em-tab-panel}}
+                    \{{#em-tab-panel}}
+                        \{{render 'c2'}}
+                    \{{/em-tab-panel}}
+                \{{/em-tabs}}
+    </code></pre>
+</div>
+
+<h2>Controllers</h2>
+<div class="well line-example">
+    <pre><code class="javascript">
+    //c1 controller of the c1 template
+    export default Em.Controller.extend({
+        label: "I'm controller 1"
+    });
+    //c2 controller of the c2 template
+    export default Em.Controller.extend({
+        label: "I'm controller 2"
+    });
+    </code></pre>
+</div>
+
+

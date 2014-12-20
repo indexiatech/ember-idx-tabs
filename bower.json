@@ -13,5 +13,10 @@
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.4",
     "qunit": "~1.15.0"
+  },
+  "devDependencies": {
+    "bootstrap": "~3.3.1",
+    "fontawesome": "~4.2.0",
+    "highlightjs": "~8.4.0"
   }
 }
