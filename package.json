@@ -37,6 +37,9 @@
   "authors": [
     "Indexia Technologies, ltd."
   ],
+  "keywords": [
+    "ember-addon"
+  ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
