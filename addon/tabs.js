@@ -122,6 +122,6 @@ export default Em.Component.extend(WithConfigMixin, StyleBindingsMixin, {
    * @param panel {Object} The `TabPanel` instance to remove.
    */
   removeTabPanel: function(panel) {
-    return this.get('panels').removeObject('panel');
+    return this.get('panels').removeObject(panel);
   }
 });
