@@ -1,6 +1,6 @@
 {
   "name": "ember-idx-tabs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -46,6 +46,6 @@
     "configPath": "tests/dummy/config"
   },
   "dependencies": {
-    "ember-idx-utils": "^0.2.1"
+    "ember-idx-utils": "^0.2.2"
   }
 }
