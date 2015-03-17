@@ -24,6 +24,7 @@ import StyleBindingsMixin from 'ember-idx-utils/mixin/style-bindings';
  * @public
  */
 export default Em.Component.extend(WithConfigMixin, StyleBindingsMixin, {
+  debug: false,
   classNameBindings: ['styleClasses'],
   styleClasses: (function() {
     var _ref;
@@ -79,7 +80,9 @@ export default Em.Component.extend(WithConfigMixin, StyleBindingsMixin, {
     if (!tab) {
       return;
     }
-    Em.debug("Selecting tab: " + (tab.get('index')));
+    if (this.get('debug')) {
+      Em.debug("Selecting tab: " + (tab.get('index')));
+    }
     this.set('selected', tab);
     return this.set('selected-idx', tab.get('index'));
   },
