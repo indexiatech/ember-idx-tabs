@@ -7,10 +7,10 @@ var computed = Em.computed;
 
 export default Em.Component.extend(WithConfigMixin, StyleBindingsMixin, {
   classNameBindings: ['styleClasses'],
-  styleClasses: (function() {
+  styleClasses: Em.computed(function() {
     var _ref;
     return (_ref = this.get('config.tabs.tabPanelClasses')) != null ? _ref.join(" ") : void 0;
-  }).property(),
+  }),
   styleBindings: ['height'],
   attributeBindings: ['selected'],
 
@@ -43,22 +43,22 @@ export default Em.Component.extend(WithConfigMixin, StyleBindingsMixin, {
    * @property tab
    * @type Tab
    */
-  tab: (function() {
+  tab: Em.computed('panels.length', 'tabList.tab_instances.@each', function() {
     var index, tabs;
     index = this.get('panels').indexOf(this);
     tabs = this.get('tabList.tab_instances');
     return tabs && tabs.objectAt(index);
-  }).property('panels.length', 'tabList.tab_instances.@each'),
-  selected: (function() {
+  }),
+  selected: Em.computed('tab', 'tab.selected', function() {
     return this.get('tab.selected');
-  }).property('tab', 'tab.selected'),
-  changeVisibility: (function() {
+  }),
+  changeVisibility: Em.observer('selected', function() {
     return this.$().css('display', this.get('selected') ? "" : 'none');
-  }).observes('selected'),
-  register: (function() {
+  }),
+  register: Em.on('didInsertElement', function() {
     return this.get('tabs').addTabPanel(this);
-  }).on('didInsertElement'),
-  unregister: (function() {
+  }),
+  unregister: Em.on('willDestroyElement', function() {
     return this.get('tabs').removeTabPanel(this);
-  }).on('willDestroyElement')
+  })
 });

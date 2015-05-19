@@ -2,6 +2,7 @@
 import Em from 'ember';
 import WithConfigMixin from 'ember-idx-utils/mixin/with-config';
 var computed = Em.computed;
+var on = Em.on;
 
 /**
  * `{{em-tab-list}}` component.
@@ -13,14 +14,14 @@ var computed = Em.computed;
  */
 
 export default Em.Component.extend(WithConfigMixin, {
-  setTagName: (function() {
+  setTagName: on('init', function() {
     return this.set('tagName', this.get('config.tabs.tabListTag') || 'div');
-  }).on('init'),
+  }),
   classNameBindings: ['styleClasses'],
-  styleClasses: (function() {
+  styleClasses: Em.computed(function() {
     var _ref;
     return (_ref = this.get('config.tabs.tabListClasses')) != null ? _ref.join(" ") : void 0;
-  }).property(),
+  }),
 
   /**
    * The ancestor `Tabs` component
@@ -51,9 +52,9 @@ export default Em.Component.extend(WithConfigMixin, {
    * @property selectedIdx
    * @type Number
    */
-  selectedIdx: (function() {
+  selectedIdx: computed('selected', function() {
     return this.get('tab_instances').indexOf(this.get('selected'));
-  }).property('selected'),
+  }),
 
   /**
    * Auto register this `TabList` in the ancestor tabs component.
@@ -61,9 +62,9 @@ export default Em.Component.extend(WithConfigMixin, {
    * @method register
    * @private
    */
-  register: (function() {
+  register: on('didInsertElement', function() {
     return this.get('tabs').setTabList(this);
-  }).on('didInsertElement'),
+  }),
 
   /**
    * Initialize an empty tabs array
@@ -71,11 +72,11 @@ export default Em.Component.extend(WithConfigMixin, {
    * @method initTabs
    * @private
    */
-  initTabs: (function() {
+  initTabs: on('init', function() {
     return this.set('tab_instances', Em.ArrayProxy.create({
-      content: []
+      content: Em.A()
     }));
-  }).on('init'),
+  }),
 
   /**
    * Add a tab to the tab list

@@ -10,9 +10,9 @@ var computed = Em.computed;
  * @class Tab
  */
 export default Em.Component.extend(WithConfigMixin, {
-  setTagName: (function() {
+  setTagName: Em.on('init', function() {
     return this.set('tagName', this.get('config.tabs.tabTag') || 'div');
-  }).on('init'),
+  }),
 
   /**
    * Bind the specified attributes to the DOM element
@@ -23,19 +23,19 @@ export default Em.Component.extend(WithConfigMixin, {
   attributeBindings: ['active'],
   classNameBindings: ['styleClasses', 'selectedClass'],
   
-  styleClasses: (function() {
+  styleClasses: computed(function() {
     var _ref;
     return (_ref = this.get('config.tabs.tabClasses')) != null ? _ref.join(" ") : void 0;
-  }).property(),
+  }),
 
-  selectedClass: (function() {
+  selectedClass: computed('selected', function() {
     var _ref;
     if (this.get('selected')) {
       return (_ref = this.get('config.tabs.tabSelectedClasses')) != null ? _ref.join(" ") : void 0;
     } else {
       return null;
     }
-  }).property('selected'),
+  }),
 
   /**
    * A reference to the {{#crossLink "Tabs"}}Tabs{{/crossLink}} instance.
@@ -59,21 +59,21 @@ export default Em.Component.extend(WithConfigMixin, {
    * @property selected
    * @type Boolean
    */
-  selected: (function() {
+  selected: computed('tabs.selected', function() {
     return this.get('tabs.selected') === this;
-  }).property('tabs.selected'),
+  }),
 
-  active: (function() {
+  active: computed('selected', function() {
     if (this.get('selected')) {
       return "true";
     } else {
       return null;
     }
-  }).property('selected'),
+  }),
 
-  index: (function() {
+  index: computed('tabList.tab_instances.@each', function() {
     return this.get('tabList.tab_instances').indexOf(this);
-  }).property('tabList.tab_instances.@each'),
+  }),
 
   /**
    * Select this tab.
@@ -82,9 +82,9 @@ export default Em.Component.extend(WithConfigMixin, {
    *
    * @method select
    */
-  select: (function() {
+  select: Em.on('click', function() {
     return this.get('tabs').select(this);
-  }).on('click'),
+  }),
 
   /**
    * Select this tab if it matches the {{#crossLink "Tabs/select:method"}}selected-idx{{/crossLink}} property set by the Tabs component.
@@ -92,7 +92,7 @@ export default Em.Component.extend(WithConfigMixin, {
    * @method selectByTabsParam
    * @private
    */
-  selectByTabsParam: (function() {
+  selectByTabsParam: Em.on('didInsertElement', Em.observer('tabs.selected-idx', function() {
     var idx;
     if ((this.get('tabs.selected') != null) === this) {
       return;
@@ -101,7 +101,7 @@ export default Em.Component.extend(WithConfigMixin, {
     if (idx === this.get('index')) {
       return this.select();
     }
-  }).observes('tabs.selected-idx').on('didInsertElement'),
+  })),
 
   /**
    * Register this tab in the {{#crossLink "TabList"}}{{/crossLink}} component instance.
@@ -109,9 +109,9 @@ export default Em.Component.extend(WithConfigMixin, {
    * @method register
    * @private
    */
-  register: (function() {
+  register: Em.on('didInsertElement', function() {
     return this.get('tabList').addTab(this);
-  }).on('didInsertElement'),
+  }),
 
   /**
    * Unregister this tab from the {{#crossLink "TabList"}}{{/crossLink}} component instance.
@@ -119,7 +119,7 @@ export default Em.Component.extend(WithConfigMixin, {
    * @method unregister
    * @private
    */
-  unregister: (function() {
+  unregister: Em.on('willDestroyElement', function() {
     return this.get('tabList').removeTab(this);
-  }).on('willDestroyElement')
+  })
 });

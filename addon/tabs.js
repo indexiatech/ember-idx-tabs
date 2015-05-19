@@ -26,10 +26,10 @@ import StyleBindingsMixin from 'ember-idx-utils/mixin/style-bindings';
 export default Em.Component.extend(WithConfigMixin, StyleBindingsMixin, {
   debug: false,
   classNameBindings: ['styleClasses'],
-  styleClasses: (function() {
+  styleClasses: Em.computed(function() {
     var _ref;
     return (_ref = this.get('config.tabs.tabsClasses')) != null ? _ref.join(" ") : void 0;
-  }).property(),
+  }),
   styleBindings: ['height'],
 
   /**
@@ -92,11 +92,11 @@ export default Em.Component.extend(WithConfigMixin, StyleBindingsMixin, {
    *
    * @method initTabPanels
    */
-  initTabPanels: (function() {
+  initTabPanels: Em.on('init', function() {
     return this.set('panels', Em.ArrayProxy.create({
-      content: []
+      content: Em.A()
     }));
-  }).on('init'),
+  }),
 
   /**
    * Set the specified `TabList` instance.
