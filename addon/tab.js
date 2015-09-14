@@ -71,7 +71,7 @@ export default Em.Component.extend(WithConfigMixin, {
     }
   }),
 
-  index: computed('tabList.tab_instances.@each', function() {
+  index: computed('tabList.tab_instances.[]', function() {
     return this.get('tabList.tab_instances').indexOf(this);
   }),
 
