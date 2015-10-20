@@ -43,7 +43,7 @@ export default Em.Component.extend(WithConfigMixin, StyleBindingsMixin, {
    * @property tab
    * @type Tab
    */
-  tab: Em.computed('panels.length', 'tabList.tab_instances.@each', function() {
+  tab: Em.computed('panels.length', 'tabList.tab_instances.[]', function() {
     var index, tabs;
     index = this.get('panels').indexOf(this);
     tabs = this.get('tabList.tab_instances');
